@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    margin: 0;
+}
+body button {
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+body button:hover {
+    transform: scale(1.03); /* Scale up the button slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light box shadow */
+}
+header{
+    background-color: #B7C9F3;
+    color:rgb(114, 114, 114);
+    text-align: center;
+    width:100%;
+    
+
+}
+
+
+.highlight {
+    background-color:rgb(205, 205, 205); /* Highlighted row and column */
+  }
+
+  .invalid {
+    background-color: rgb(252, 207, 207); /* Invalid number (already in row/col) */
+  }
+  .locked {
+    background-color: #d8e4ff; /* Cells with original numbers are locked */
+    cursor: not-allowed;
+  }
+ 
+
+
+#gameboard li{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    border: 1px solid rgb(115, 115, 115);
+    
+    
+}
+#gamebox li:hover{
+    background-color:#eff4ff ;
+}
+#gameboard li:nth-child(3n) {
+    border-right: 1.5px solid gray; /* Border on the right of every 3rd column */
+  }
+  
+  #gameboard li:nth-child(9n+1) {
+    border-left: 1.5px solid gray; /* Border on the left of every new 3x3 section */
+  }
+  
+  #gameboard li:nth-child(n+19):nth-child(-n+27) {
+    border-bottom: 1.5px solid gray; /* Bottom border for 19 to 27 */
+  }
+  
+  #gameboard li:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 1.5px solid gray; /* Bottom border for 46 to 54 */
+  }
+  
+  #gameboard li:nth-child(n+73):nth-child(-n+81) {
+    border-bottom: 1.5px solid gray; /* Bottom border for 73 to 81 */
+  }
+  
+  #gameboard li:nth-child(-n + 9) {
+    border-top: 1.5px solid gray; /* Border on top of the first row */
+  }
+  
+ 
+  
+  /* Bold borders for every 3rd row */
+
+
+.box{
+    border: 1.7px solid rgb(100, 100, 100);
+}
+
+#gameboard :active{
+    background-color: bisque;
+}
+
+#newbuttons{
+    display:flex;
+    flex-direction: column;
+    gap:3px;
+    margin-top: 5px;
+}
+#gamecontrols{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#newbuttons button{
+    background-color: #5c7cc4;
+    color:white;
+    font-size: large;
+    font-weight:700;
+    border-radius:3px;
+    padding:7px 20px;
+    border:none;
+    margin-top: 8px;
+}
+#wintext button{
+    background-color: #5c7cc4;
+    color:white;
+    font-size: medium;
+    font-weight:600;
+    border-radius:7px;
+    padding:5px 15px;
+    border:none;
+    margin-top: 8px;
+
+}
+#minicontrols{
+   display:flex;
+   flex-direction: column;
+   align-items: center;
+}
+#numpad li{
+    background-color:#B7C9F3;
+    border-radius:3px;
+    text-align: center;
+    font-size: x-large;
+    transition: transform 0.3s ease;
+}
+#numpad li:hover{
+    transform: scale(1.09); 
+    
+
+}
+
