@@ -4,7 +4,7 @@ module.exports = {
     // "./*.html", 
     // "./*.js",   
     // "./*.css",  
-    "./main.html",            // Path to the HTML file
+    "./index.html",            // Path to the HTML file
     "./scripts/**/*.js",      // Path to JS files inside the scripts folder
     "./styles.css",   
   ],

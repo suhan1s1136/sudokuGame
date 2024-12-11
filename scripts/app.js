@@ -1,7 +1,3 @@
-
-  
-
-
 const closeGame=document.getElementById('gameclose');
 const newGameButton=document.getElementsByClassName('newgame');
 const solutionButton=document.getElementById('solution');
@@ -11,7 +7,21 @@ const cells = gameboard.querySelectorAll('li');
 const numPad=document.getElementById('numpad');
 const numButtons=numPad.querySelectorAll('li');
 const winText=document.getElementById('wintext');
+const customInput=document.getElementById('customgame');
+const digitForm=document.getElementById('digitForm');
+const takeInput=document.getElementById('takeinput');
 eraseAll.addEventListener('click', fillGameboard);
+let custom=false;
+
+customInput.addEventListener('click',()=>{
+digitForm.style.display='block';
+});
+
+takeInput.addEventListener('click', (event) => {
+  event.preventDefault(); // Prevent default form submission behavior
+  custom = true;
+  TakeBoard();
+});
 
 
 for(const cell of cells){

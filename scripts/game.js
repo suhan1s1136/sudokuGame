@@ -1,52 +1,70 @@
     
     let currentSelectedCell = null;
-    let board  = TakeBoard();;
-    function TakeBoard(){
-        const randomPuzzle = sudokuPuzzles[Math.floor(Math.random() * sudokuPuzzles.length)];
-
-        
-        const board = [];
-        for (let i = 0; i < 9; i++) {
-            const row = [];
-            for (let j = 0; j < 9; j++) {
-                const cell = randomPuzzle[i * 9 + j] === "0" ? "." : parseInt(randomPuzzle[i * 9 + j]);
-                row.push(cell);
-            }
-            board.push(row);
-        }
-       console.log(board);
-        return board;
-        
-
-      }
-      let copyOfBoard = board.map(row => [...row]);
-
+    let board = []; // Global variable for the main board
+    let copyOfBoard = []; // Global variable for the copy of the board
+    
     function fillGameboard() {
-       
-     
-        for (let row = 0; row < 9; row++) {
-          for (let col = 0; col < 9; col++) {
-            const index = row * 9 + col; // Calculate the index for the current cell
-            const value = board[row][col];
-
-
-      
-            const cell = cells[index]; // Get the cell at the calculated index
-            cell.classList.remove('invalid');
-      
-            // If the value is a number, set it as text, otherwise leave the cell empty
-            if (value !== ".") {
-              cell.textContent = value;
-              cell.classList.add('locked');
-              // Lock cells with original numbers
-            } else {
-              cell.textContent = ""; // Clear the cell if the value is not a number
-              
-            }
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          const index = row * 9 + col; // Calculate the index for the current cell
+          const value = board[row][col];
+    
+          const cell = cells[index]; // Get the cell at the calculated index
+          cell.classList.remove('invalid');
+          cell.classList.remove('locked');
+    
+          // If the value is a number, set it as text, otherwise leave the cell empty
+          if (value !== ".") {
+            cell.textContent = value;
+            cell.classList.add('locked'); // Lock cells with original numbers
+          } else {
+            cell.textContent = ""; // Clear the cell if the value is not a number
           }
         }
       }
+    }
+ 
+    function TakeBoard() {
+      board = [];
+      copyOfBoard = [];
     
+      if (custom) {
+        const digitString = document.getElementById('digitinput').value.trim();
+    
+        if (!/^\d{81}$/.test(digitString)) {
+          alert("Please enter exactly 81 digits, where '0' represents empty cells.");
+          return;
+        }
+      
+        for (let i = 0; i < 9; i++) {
+          const row = [];
+          for (let j = 0; j < 9; j++) {
+            const cell = digitString[i * 9 + j] === "0" ? "." : parseInt(digitString[i * 9 + j]);
+            row.push(cell);
+          }
+          board.push(row);
+        }
+        console.log("custom sudoku for you served hot!");
+      } else {
+        const randomPuzzle = sudokuPuzzles[Math.floor(Math.random() * sudokuPuzzles.length)];
+    
+        // Create a 2D board from the random puzzle
+        for (let i = 0; i < 9; i++) {
+          const row = [];
+          for (let j = 0; j < 9; j++) {
+            const cell = randomPuzzle[i * 9 + j] === "0" ? "." : parseInt(randomPuzzle[i * 9 + j]);
+            row.push(cell);
+          }
+          board.push(row);
+        }
+        console.log("random sudoku :|");
+      }
+    
+      copyOfBoard = board.map(row => [...row]); // Update the global copy of the board
+      fillGameboard(board); // Fill the gameboard with the new board
+      
+    }
+
       function winCheck(){
         for (let row = 0; row < 9; row++) {
             for (let col = 0; col < 9; col++) {
@@ -183,6 +201,9 @@
 
  
   
-  window.onload = fillGameboard;
+  window.onload = () => {
+    custom = false; // Ensure custom is false on reload
+    TakeBoard(); // Generate a random board on page load
+};
   
   

@@ -101,7 +101,7 @@ header{
     
 }
 
-#newbuttons button{
+#newbuttons button,#takeinput{
     background-color: #5c7cc4;
     color:white;
     font-size: large;
@@ -111,6 +111,8 @@ header{
     border:none;
     margin-top: 8px;
 }
+
+
 #wintext button{
     background-color: #5c7cc4;
     color:white;
